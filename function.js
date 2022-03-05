@@ -1,52 +1,77 @@
-let buttonClicado = document.querySelectorAll('p')
+// Declarate
+let buttonClick = document.querySelectorAll('p')
 let calc = document.getElementById('calc')
+let tipic = document.getElementsByClassName('tipic')
+let color = document.getElementById("colorClickActive")
 let valor = {}
 let calculo
 let aux = 0
 let operAux
-let aux2=0
+let Aux_Validation_Second_Operation=0
+let Aux_Validation_Second_Numbers=0
+let Aux_Validation_Class_Active=0
+// RemoveClassActive
+color.classList.remove("colorClickActive")
 // Verify the button
-for (i = 0; i < buttonClicado.length; i++) {
-    buttonClicado[i].addEventListener("click", function (e) {
-        buttonClicado = e.target.innerText
-        if (buttonClicado === '/' || buttonClicado === '*' || buttonClicado === '-' || buttonClicado === '+' || buttonClicado ==='=') {
-            if(aux2 === 1)
+for (i = 0; i < buttonClick.length; i++) {
+        // Select the button of click
+        buttonClick[i].addEventListener("click", function (e) {
+        buttonClick = e.target.innerText
+        //Verification of Operators
+        if (buttonClick === '/' || buttonClick === '*' || buttonClick === '-' || buttonClick === '+' || buttonClick ==='=') {
+            if (Aux_Validation_Second_Operation === 1)
             {
                 calc.innerHTML = ''
-                aux2 == 0
+                 Aux_Validation_Second_Operation == 0
                 oper(operAux)
-                valor[0] = valor[3]
+                valor[0] = valor[2]
                 valor[1] = 0
-                operAux = buttonClicado
+                operAux = buttonClick
 
             }
-            operAux = buttonClicado
+            operAux = buttonClick
             aux = 1
+            Aux_Validation_Second_Numbers=1
+            // Remove and Add Class Active
+            if(Aux_Validation_Class_Active === 1){
+                color.classList.remove("colorClickActive")
+                Aux_Validation_Class_Active=0
+                
+            }
+            else{
+                color.classList.add("colorClickActive")
+                Aux_Validation_Class_Active=1
+            }
         }
         else {
-            calc.innerHTML += buttonClicado
-            aux === 0 ? valor[0] = calc.innerText : valor[1] = calc.innerText
+            // IF button click is a number
             if (aux === 1) {
-                calc.innerHTML = ''
-                calc.innerHTML += buttonClicado
+                if(Aux_Validation_Second_Numbers===1){
+                    calc.innerHTML = ''
+                    Aux_Validation_Second_Numbers=0 
+                }
+                calc.innerHTML += buttonClick
                 valor[1] = calc.innerHTML
-                aux = 0
-                aux2 = 1
-
+                Aux_Validation_Second_Operation = 1
             }
-            if (buttonClicado === 'C') {
+            else{
+                calc.innerHTML += buttonClick
+                valor[0] = calc.innerText
+            }
+            // clean all atribuitions
+            if (buttonClick === 'C') {
                 calc.innerHTML = ''
                 valor[0] = 0
                 valor[1] = 0
                 calculo = 0
                 aux = 0
-                aux2=0
+                Aux_Validation_Second_Operation=0
             }
         }
-        console.log(valor[0], valor[1])
     });
 }
 
+// function of operations
 function oper(Selec){
         switch (Selec) {
             case '/':
@@ -69,5 +94,5 @@ function oper(Selec){
                 calc.innerHTML = calculo
                 break;
         }
-        valor[3] = calculo 
+        valor[2] = calculo 
 }
