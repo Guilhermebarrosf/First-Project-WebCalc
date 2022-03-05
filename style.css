@@ -19,6 +19,7 @@ body{
     margin-right: auto;
     margin-top: 100px;
     border-radius: 20px;
+    border: 1px solid rgba(255, 0, 0, 0.445);
 }
 .tipic{
     display: flex;
@@ -49,10 +50,12 @@ body{
 }
 #calc{
     display:flex;
-    justify-content: center;
+    justify-content: center;   
     padding-top: 50px;
     font-size: 2rem;
     height: 50px;
+    border: 2px solid rgba(0, 0, 0, 0.459);
+    border-radius: 10px;
 }
 .op-and-numbers{
     display: flex;
@@ -65,6 +68,8 @@ body{
     height: 57px;
     text-align: center;
     line-height: 57px;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 .op-and-numbers p:hover{
     border-radius: 10px;
